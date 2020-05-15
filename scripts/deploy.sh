@@ -70,6 +70,9 @@ ${installer} --dir=${installer_dir} create ignition-configs
 ignition_url="$(ignition_s3_cp ${installer_dir}/bootstrap.ign)"
 make_bootstrap_ignition > ${installer_dir}/bootstrap.ign
 
+# Init terraform code
+terraform init
+
 # Override defaul values with 0 nodes and 1 boot
 terraform apply -auto-approve -var=number_of_workers=0 -var=number_of_boot=1
 
@@ -87,8 +90,6 @@ done
 
 ./openshift-install --dir=${installer_dir} wait-for bootstrap-complete 
 
-# Init terraform code
-terraform init
 
 # Apply with default values
 terraform apply -auto-approve

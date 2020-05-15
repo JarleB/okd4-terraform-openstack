@@ -2,7 +2,6 @@
 
 
 set -eo pipefail
-set -x
 
 function openstack-image-create {
   file=$1
@@ -38,4 +37,7 @@ openstack-image-create "${fcos_file_decompressed}" "${openstack_image_name}"
 echo "Extracting tools for okd version ${release}"
 oc4 adm release extract --tools ${repo}:${release}
 tar zxvf "openshift-install-linux-${release}.tar.gz" 
+tar zxvf "openshift-client-linux-${release}.tar.gz" 
 
+# Revert overwriting the README :-)
+git stash
