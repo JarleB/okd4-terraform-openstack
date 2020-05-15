@@ -13,7 +13,7 @@ for DNS setup within terraform (specifically https://nrec.no/)
 Disclaimer: This code is for testing / proof-of-concept and not for production use.
 
 NB: You don't want to be logged in to other openshift cluster contexts when
-running this deployement. It maght take you in an unexpected direction :-)
+running this deployement. It might take you in an unexpected direction :-)
 
 ## How to use
 
