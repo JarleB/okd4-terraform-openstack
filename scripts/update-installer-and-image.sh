@@ -34,10 +34,10 @@ openstack_image_name="fcos-${image_ver}"
 echo "Uploading image file to: ${openstack_image_name}"
 openstack-image-create "${fcos_file_decompressed}" "${openstack_image_name}"
 
+cp README.md README.md.orig
 echo "Extracting tools for okd version ${release}"
 oc4 adm release extract --tools ${repo}:${release}
 tar zxvf "openshift-install-linux-${release}.tar.gz" 
 tar zxvf "openshift-client-linux-${release}.tar.gz" 
+cp README.md.orig README.md
 
-# Revert overwriting the README :-)
-git stash
