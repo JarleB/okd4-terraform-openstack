@@ -3,12 +3,21 @@
 Terraform code to provision OKD4 using user provisioned installer (UPI) and
 glue code to tie it all together
 
+From an openshift installer perspective this is a "bare matal" install:
+https://docs.okd.io/latest/installing/installing_bare_metal/installing-bare-metal.html#installing-bare-metal
+User provided infrastructure is orchestrated using terraform in combination with scripts and an ansible playbook.
+
 Tested on Openstack RDO with Calico as SDN in Openstack and openstack designate
 for DNS setup within terraform (specifically https://nrec.no/)
 
+Disclaimer: This code is for testing / proof-of-concept and not for production use.
+
+NB: You don't want to be logged in to other openshift cluster contexts when
+running this deployement. It maght take you in an unexpected direction :-)
+
 ## How to use
 
-First clone this repo to local host and cd okd4-terraform-openstack
+First clone this repo to local host and `cd okd4-terraform-openstack`
 
 There is two scripts, `update-installer-and-image.sh` and
 `deploy.sh`, for getting dependencies and deploying the
