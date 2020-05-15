@@ -3,7 +3,7 @@
 Terraform code to provision OKD4 using user provisioned installer (UPI) and
 glue code to tie it all together
 
-From an openshift installer perspective this is a "bare matal" install:
+From an openshift installer perspective this is a "bare metal" install:
 https://docs.okd.io/latest/installing/installing_bare_metal/installing-bare-metal.html#installing-bare-metal
 User provided infrastructure is orchestrated using terraform in combination with scripts and an ansible playbook.
 
@@ -13,7 +13,7 @@ for DNS setup within terraform (specifically https://nrec.no/)
 Disclaimer: This code is for testing / proof-of-concept and not for production use.
 
 NB: You don't want to be logged in to other openshift cluster contexts when
-running this deployement. It might take you in an unexpected direction :-)
+running this deployment. It might take you in an unexpected direction :-)
 
 ## How to use
 
@@ -23,8 +23,8 @@ There is two scripts, `update-installer-and-image.sh` and
 `deploy.sh`, for getting dependencies and deploying the
 cluster respectively.
 
-You need access to an openstack project with  at least 72GB quota of RAM, a DNS
-subdomain that can be controlled with the Openstack API. Also, this terraform
+You need access to an openstack project with enoght resources to accomodate nodes according to
+https://docs.okd.io/latest/installing/installing_bare_metal/installing-bare-metal.html#minimum-resource-requirements_installing-bare-metal , a DNS subdomain that can be controlled with the Openstack API. Also, this terraform
 code assumes that instances automatically get a NIC with public IPv4
 address assigned to it.
 
@@ -111,6 +111,10 @@ console. To find the address:
 
 ` ./oc get route --all-namespaces |grep ' console'`
 
+User is `kubeadmin` password is in `installer/auth/kubeadmin-password`
+
 Please see the `deploy.sh` script for next steps and details on what's going on
 
+To tear everything down:
 
+`terraform destroy`
